@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+if [ "$1" == "-u" ]; then
+        pulsemixer --change-volume +10
+        NEWVOLUME=$(pulsemixer --get-volume | awk '{print $NF}')
+        dunstify -h int:value:$NEWVOLUME -r 1093 Volume "Volume Up\n $NEWVOLUME"
+fi
+
+if [ "$1" == "-d" ]; then
+    pulsemixer --change-volume -10
+    NEWVOLUME=$(pulsemixer --get-volume | awk '{print $NF}')
+    dunstify -h int:value:$NEWVOLUME -r 1093 Volume "Volume Down\n $NEWVOLUME"
+fi
+
+if [ "$1" == "-l" ]; then
+    VOLUME=$(pulsemixer --get-volume | awk '{print $NF}')
+    echo $VOLUME
+fi
