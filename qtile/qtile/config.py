@@ -98,7 +98,7 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([], "Pause", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
 
@@ -107,11 +107,6 @@ keys = [
     Key([mod], "p", lazy.spawn("passmenu")),
 
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggles floating and non-floating modes"),
-
-    Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("volumeControl -u")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("volumeControl -d")),
-    Key([], "XF86Search", lazy.spawn(f"{browser} --new-window about:home"), desc='Spawn the browser with a media key.'),
 ]
 
 def returnKeys():
@@ -123,7 +118,7 @@ groups = [Group(name, layout='MonadTall') for name in group_names]
 
 for i, name in enumerate(group_names):
     indx = "F" + str(i + 1)
-    keys += [Key([mod], indx, lazy.group[name].toscreen()), Key(["shift"], indx, lazy.window.togroup(name))]
+    keys += [Key([], indx, lazy.group[name].toscreen()), Key(["shift"], indx, lazy.window.togroup(name))]
 
 
 layouts = [

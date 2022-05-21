@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+blueman-manager &
+firefox &
+startPolybar &
+discord --start-minimized &
